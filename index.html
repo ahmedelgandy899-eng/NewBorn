@@ -1,0 +1,3517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nokhpa TEAM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --gold:#d4af37;
+  --gold-light:#f5d76e;
+  --gold-dark:#9c7618;
+  --gold-soft:rgba(212,175,55,.18);
+
+  --bg:#070707;
+  --bg2:#101010;
+  --card:#111111;
+
+  --text:#f7f2df;
+  --text2:#c9c0a8;
+  --text3:#91876e;
+
+  --border:rgba(212,175,55,.22);
+
+  --success:#20c77a;
+  --danger:#ef4444;
+
+  --radius:18px;
+}
+
+*{
+  scrollbar-width:thin;
+  scrollbar-color:#d4af37 #050505;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Outfit',sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.08),transparent 35%),
+    #070707;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(212,175,55,.035),transparent 25%),
+    radial-gradient(circle at 90% 80%,rgba(212,175,55,.035),transparent 25%);
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+#prog-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:4px;
+  z-index:9999;
+  background:linear-gradient(
+    90deg,
+    #8f6b16,
+    #d4af37,
+    #fff1a8,
+    #d4af37,
+    #8f6b16
+  );
+  box-shadow:0 0 14px rgba(212,175,55,.8);
+  transition:width .3s ease;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:64px;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 28px;
+
+  background:rgba(5,5,5,.95);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid rgba(212,175,55,.35);
+
+  box-shadow:
+    0 4px 25px rgba(0,0,0,.5),
+    0 1px 0 rgba(212,175,55,.08);
+}
+
+.nav-back{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:#e9d88d;
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:700;
+
+  padding:8px 13px;
+
+  border-radius:9px;
+  border:1px solid rgba(212,175,55,.35);
+
+  background:#0d0d0d;
+
+  transition:.3s;
+}
+
+.nav-back:hover{
+  color:#fff;
+  border-color:#d4af37;
+  transform:translateX(3px);
+  box-shadow:0 0 18px rgba(212,175,55,.18);
+}
+
+.nav-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:#f5d76e;
+  font-size:15px;
+  font-weight:900;
+}
+
+.nav-logo-icon{
+  width:35px;
+  height:35px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#080808;
+  font-size:11px;
+  font-weight:900;
+
+  border:1px solid rgba(255,225,120,.8);
+
+  box-shadow:
+    0 0 18px rgba(212,175,55,.28),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.theme-btn{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#0d0d0d;
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  transition:.3s;
+}
+
+.theme-btn:hover{
+  border-color:#d4af37;
+  transform:rotate(20deg);
+  box-shadow:0 0 18px rgba(212,175,55,.2);
+}
+
+/* HERO */
+
+.hero-band{
+  position:relative;
+  overflow:hidden;
+
+  margin-top:64px;
+
+  padding:44px 24px 38px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      ellipse 650px 260px at 50% 115%,
+      rgba(212,175,55,.22),
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      #030303 0%,
+      #0b0b0b 42%,
+      #151208 65%,
+      #000 100%
+    );
+
+  border-bottom:1px solid rgba(212,175,55,.55);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.55),
+    inset 0 -1px 0 rgba(212,175,55,.2);
+}
+
+.hero-band::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse 700px 220px at 50% 100%,
+      rgba(245,215,110,.15),
+      transparent 70%
+    );
+}
+
+.hero-band::after{
+  content:"";
+  position:absolute;
+
+  left:-10%;
+  right:-10%;
+  bottom:-85px;
+
+  height:150px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(212,175,55,.14),
+      transparent 65%
+    );
+
+  pointer-events:none;
+}
+
+.hero-band-icon{
+  position:relative;
+  z-index:1;
+
+  width:70px;
+  height:70px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0 auto 15px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#090909;
+
+  border:1px solid rgba(255,230,130,.85);
+
+  font-size:30px;
+
+  box-shadow:
+    0 0 25px rgba(212,175,55,.25),
+    inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+.hero-band h1{
+  position:relative;
+  z-index:1;
+
+  color:#fff7d0;
+
+  font-size:clamp(22px,4vw,31px);
+  font-weight:900;
+
+  margin-bottom:7px;
+
+  text-shadow:
+    0 2px 15px rgba(212,175,55,.25);
+}
+
+.hero-band p{
+  position:relative;
+  z-index:1;
+
+  color:#cfc39b;
+
+  font-size:13px;
+}
+
+.hero-band-meta{
+  position:relative;
+  z-index:1;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:14px;
+
+  margin-top:20px;
+
+  flex-wrap:wrap;
+}
+
+.meta-pill{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  padding:7px 16px;
+
+  border-radius:50px;
+
+  background:rgba(212,175,55,.08);
+
+  border:1px solid rgba(212,175,55,.38);
+
+  color:#f5d76e;
+
+  font-size:12px;
+  font-weight:700;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 15px rgba(0,0,0,.25);
+}
+
+/* MAIN */
+
+.shell{
+  width:100%;
+  max-width:760px;
+
+  margin:0 auto;
+
+  padding:28px 20px 80px;
+}
+
+/* STATS */
+
+.stats-row{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:12px;
+
+  margin-bottom:16px;
+}
+
+.stat-box{
+  padding:13px 10px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.035),
+      rgba(212,175,55,.025)
+    );
+
+  border:1px solid rgba(212,175,55,.22);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.03);
+
+  transition:.3s;
+}
+
+.stat-box:hover{
+  transform:translateY(-3px);
+
+  border-color:rgba(212,175,55,.5);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.45),
+    0 0 20px rgba(212,175,55,.08);
+}
+
+.stat-box .val{
+  font-size:21px;
+  font-weight:900;
+}
+
+.stat-box .lbl{
+  margin-top:2px;
+
+  color:var(--text3);
+
+  font-size:11px;
+}
+
+.stat-correct{
+  color:var(--success);
+}
+
+.stat-wrong{
+  color:var(--danger);
+}
+
+.stat-remain{
+  color:#d4af37;
+}
+
+/* PROGRESS */
+
+.prog-strip{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  padding:14px 16px;
+
+  margin-bottom:16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #101010,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.prog-label{
+  color:#d8cfb5;
+
+  font-size:13px;
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+.prog-track{
+  flex:1;
+
+  height:8px;
+
+  background:#050505;
+
+  border:1px solid rgba(212,175,55,.12);
+
+  border-radius:8px;
+
+  overflow:hidden;
+}
+
+.prog-fill{
+  width:0%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #d4af37
+    );
+
+  box-shadow:0 0 12px rgba(212,175,55,.35);
+
+  border-radius:8px;
+
+  transition:width .4s;
+}
+
+.timer-badge{
+  min-width:70px;
+  height:36px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:5px;
+
+  padding:0 12px;
+
+  flex-shrink:0;
+
+  border-radius:18px;
+
+  background:#0a0a0a;
+
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.45);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.timer-badge.warn{
+  color:#f5d76e;
+  border-color:rgba(212,175,55,.7);
+}
+
+.timer-badge.danger{
+  color:#ef4444;
+  border-color:rgba(239,68,68,.5);
+
+  animation:pulse .8s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.55}
+}
+
+/* QUESTION */
+
+.q-card{
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.28);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.5),
+    0 0 25px rgba(212,175,55,.035),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.q-header{
+  display:flex;
+  align-items:center;
+
+  padding:7px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #b58b22
+    );
+
+  box-shadow:
+    0 4px 20px rgba(212,175,55,.15);
+}
+
+.q-num{
+  padding:4px 11px;
+
+  border-radius:8px;
+
+  background:rgba(0,0,0,.25);
+
+  border:1px solid rgba(255,255,255,.18);
+
+  color:#fff9d9;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.q-text{
+  padding:22px 18px 15px;
+
+  color:#f5f1e5;
+
+  font-size:15px;
+  font-weight:700;
+
+  line-height:1.7;
+
+  border-bottom:1px solid rgba(212,175,55,.15);
+
+  text-align:left;
+  direction:ltr;
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  padding:18px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  padding:14px 16px;
+
+  min-height:55px;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151515,
+      #0d0d0d
+    );
+
+  border:1.5px solid rgba(212,175,55,.18);
+
+  color:#eee8d8;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  direction:ltr;
+  text-align:left;
+
+  user-select:none;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.opt:hover:not(.disabled){
+  border-color:#d4af37;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(212,175,55,.12),
+      rgba(212,175,55,.035)
+    );
+
+  transform:translateX(5px);
+
+  box-shadow:
+    0 5px 20px rgba(212,175,55,.1),
+    inset 0 0 15px rgba(212,175,55,.03);
+}
+
+.opt-letter{
+  width:29px;
+  height:29px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:8px;
+
+  background:#0a0a0a;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.opt.correct{
+  border-color:#20c77a;
+  background:rgba(32,199,122,.07);
+}
+
+.opt.correct .opt-letter{
+  background:#20c77a;
+  border-color:#20c77a;
+  color:#fff;
+}
+
+.opt.wrong{
+  border-color:#ef4444;
+  background:rgba(239,68,68,.07);
+}
+
+.opt.wrong .opt-letter{
+  background:#ef4444;
+  border-color:#ef4444;
+  color:#fff;
+}
+
+.opt.disabled{
+  pointer-events:none;
+}
+
+/* FEEDBACK */
+
+.feedback-bar{
+  margin:0 18px 14px;
+
+  padding:12px 16px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:800;
+
+  animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+.feedback-bar.ok{
+  background:rgba(32,199,122,.08);
+  color:#20c77a;
+  border:1px solid rgba(32,199,122,.25);
+}
+
+.feedback-bar.no{
+  background:rgba(239,68,68,.08);
+  color:#ef4444;
+  border:1px solid rgba(239,68,68,.22);
+}
+
+.feedback-icon{
+  font-size:20px;
+}
+
+@keyframes popIn{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* EXPLANATION */
+
+.explanation{
+  margin:0 18px 14px;
+
+  padding:12px 14px;
+
+  background:rgba(212,175,55,.045);
+
+  border-radius:10px;
+
+  border-right:3px solid #d4af37;
+
+  color:#d8cfb5;
+
+  font-size:13px;
+
+  line-height:1.6;
+}
+
+/* BUTTONS */
+
+.nav-btns{
+  display:flex;
+  gap:10px;
+
+  padding:4px 18px 18px;
+}
+
+.btn{
+  flex:1;
+
+  padding:13px;
+
+  border:none;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+
+  transition:.3s;
+}
+
+.btn-next,
+.btn-retry{
+  background:
+    linear-gradient(
+      135deg,
+      #9c7618,
+      #d4af37,
+      #f5d76e
+    );
+
+  color:#080808;
+
+  box-shadow:
+    0 6px 20px rgba(212,175,55,.2);
+}
+
+.btn-next:hover,
+.btn-retry:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 10px 28px rgba(212,175,55,.3);
+}
+
+.btn-skip,
+.btn-home{
+  background:#111;
+
+  color:#cfc39b;
+
+  border:1px solid rgba(212,175,55,.22);
+}
+
+.btn-skip{
+  flex:0 0 auto;
+  padding:13px 18px;
+}
+
+.btn-skip:hover,
+.btn-home:hover{
+  border-color:#d4af37;
+  color:#f5d76e;
+}
+
+/* RESULTS */
+
+.result-hero{
+  text-align:center;
+
+  padding:30px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #090909
+    );
+
+  border:1px solid rgba(212,175,55,.3);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(212,175,55,.04);
+}
+
+.score-ring{
+  width:120px;
+  height:120px;
+
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+
+  margin:0 auto 18px;
+}
+
+.score-ring svg{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  transform:rotate(-90deg);
+}
+
+.score-ring circle{
+  fill:none;
+
+  stroke-width:5;
+
+  stroke-linecap:round;
+}
+
+.ring-bg{
+  stroke:#242019;
+}
+
+.ring-fill{
+  stroke:#d4af37;
+
+  transition:stroke-dashoffset 1s ease;
+}
+
+.score-num{
+  position:relative;
+
+  font-size:28px;
+  font-weight:900;
+}
+
+.score-pct{
+  position:relative;
+
+  color:var(--text3);
+
+  font-size:12px;
+}
+
+.result-grade{
+  margin-bottom:7px;
+
+  color:#f5d76e;
+
+  font-size:23px;
+  font-weight:900;
+}
+
+.result-sub{
+  color:var(--text2);
+
+  font-size:14px;
+}
+
+.result-stats{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.rs{
+  padding:12px 8px;
+
+  background:#101010;
+
+  border:1px solid rgba(212,175,55,.15);
+
+  border-radius:10px;
+}
+
+.rs .n{
+  font-size:20px;
+  font-weight:900;
+}
+
+.rs .l{
+  color:var(--text3);
+  font-size:11px;
+}
+
+/* REPORT */
+
+.report-title{
+  margin:28px 0 12px;
+
+  color:var(--text2);
+
+  font-size:14px;
+  font-weight:800;
+}
+
+.report-item{
+  margin-bottom:10px;
+
+  padding:16px;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-right:4px solid var(--border);
+
+  border-radius:14px;
+}
+
+.report-item.ok{
+  border-right-color:var(--success);
+}
+
+.report-item.no{
+  border-right-color:var(--danger);
+}
+
+.ri-q{
+  margin-bottom:8px;
+
+  font-size:13px;
+  font-weight:700;
+
+  line-height:1.6;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-row{
+  display:flex;
+  align-items:flex-start;
+
+  gap:8px;
+
+  margin-top:6px;
+
+  color:var(--text2);
+
+  font-size:12px;
+
+  line-height:1.5;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-badge{
+  padding:2px 8px;
+
+  flex-shrink:0;
+
+  border-radius:6px;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.ri-yours{
+  background:rgba(239,68,68,.1);
+  color:#ef4444;
+}
+
+.ri-right{
+  background:rgba(32,199,122,.1);
+  color:#20c77a;
+}
+
+.result-actions{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+/* INPUTS */
+
+.student-box{
+  text-align:right;
+
+  margin-bottom:14px;
+}
+
+.student-label{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:var(--text2);
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.student-input{
+  width:100%;
+
+  padding:13px 14px;
+
+  background:#0c0c0c;
+
+  color:var(--text);
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:10px;
+
+  outline:none;
+
+  font-size:14px;
+
+  transition:.3s;
+}
+
+.student-input:focus{
+  border-color:#d4af37;
+
+  box-shadow:0 0 15px rgba(212,175,55,.1);
+}
+
+.student-error{
+  display:none;
+
+  margin-bottom:12px;
+
+  padding:10px;
+
+  color:#ef4444;
+
+  background:rgba(239,68,68,.08);
+
+  border:1px solid rgba(239,68,68,.2);
+
+  border-radius:10px;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+/* FOOTER */
+
+footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  padding:22px 24px;
+
+  background:#050505;
+
+  border-top:1px solid rgba(212,175,55,.28);
+
+  box-shadow:
+    0 -5px 25px rgba(0,0,0,.35);
+}
+
+.footer-brand{
+  color:#d8cfb5;
+
+  font-size:14px;
+  font-weight:700;
+}
+
+.footer-brand span{
+  color:#d4af37;
+}
+
+.footer-tg{
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  nav{
+    padding:0 14px;
+  }
+
+  .nav-brand span{
+    display:none;
+  }
+
+  .hero-band{
+    padding:36px 14px 32px;
+  }
+
+  .hero-band h1{
+    font-size:24px;
+  }
+
+  .meta-pill{
+    padding:6px 12px;
+  }
+
+  .shell{
+    padding:22px 12px 60px;
+  }
+
+  .stats-row{
+    gap:7px;
+  }
+
+  .stat-box{
+    padding:11px 6px;
+  }
+
+  .prog-strip{
+    gap:8px;
+  }
+
+  .prog-label{
+    font-size:11px;
+  }
+
+  .timer-badge{
+    min-width:65px;
+    padding:0 8px;
+    font-size:12px;
+  }
+
+  .q-card{
+    border-radius:16px;
+  }
+
+  .q-text{
+    font-size:14px;
+  }
+
+  .opt{
+    font-size:13px;
+    padding:13px;
+  }
+
+  footer{
+    padding:20px 14px;
+  }
+}
+/* ===== Luxury WhatsApp Contact ===== */
+
+.contact-section {
+  margin: 35px auto 10px;
+  max-width: 650px;
+  text-align: center;
+}
+
+.contact-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.contact-title h3 {
+  margin: 0;
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.contact-line {
+  width: 55px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.contact-line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.contact-btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(212,175,55,.10),
+    rgba(255,255,255,.025)
+  );
+  color: var(--text);
+  text-decoration: none;
+  text-align: right;
+  transition: .3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,.20);
+}
+
+.contact-btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 30px rgba(212,175,55,.15);
+}
+
+.contact-btn i {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  font-size: 23px;
+  color: var(--gold);
+  border: 1px solid rgba(212,175,55,.25);
+  background: rgba(212,175,55,.08);
+}
+
+.contact-btn:hover i {
+  background: var(--gold);
+  color: #080808;
+}
+
+.contact-btn div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact-btn strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.contact-btn small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="prog-bar"></div>
+
+<nav>
+
+  <a href="../index.html" class="nav-back">
+    <i class="fa-solid fa-arrow-right"></i>
+    رجوع
+  </a>
+
+  <div class="nav-brand">
+    <div class="nav-logo-icon">NT</div>
+    <span>Nokhpa TEAM</span>
+  </div>
+
+  <div class="nav-right">
+    <button
+      class="theme-btn"
+      id="themeBtn"
+      type="button"
+      aria-label="Change theme"
+    >
+      ☀️
+    </button>
+  </div>
+
+</nav>
+
+<section class="hero-band">
+
+  <div class="hero-band-icon">
+    👼🏻
+  </div>
+
+  <h1>Pediatric nursing</h1>
+
+  <p>Comprehensive Pediatric nursing NewBorn </p>
+
+  <div class="hero-band-meta">
+
+    <div class="meta-pill">
+      📚
+      <span id="totalBadge">0 سؤال</span>
+    </div>
+
+    <div class="meta-pill">
+      ⏱️ 200 Min
+    </div>
+
+    <div class="meta-pill">
+      🔀 Shuffled
+    </div>
+
+  </div>
+
+</section>
+
+<main class="shell">
+
+  <div class="stats-row">
+
+    <div class="stat-box">
+      <div class="val stat-correct" id="sCorrect">0</div>
+      <div class="lbl">صحيح</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-wrong" id="sWrong">0</div>
+      <div class="lbl">خطأ</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-remain" id="sRemain">100%</div>
+      <div class="lbl">متبقي</div>
+    </div>
+
+  </div>
+
+  <div class="prog-strip">
+
+    <div class="prog-label" id="progLabel">
+      سؤال 1
+    </div>
+
+    <div class="prog-track">
+      <div class="prog-fill" id="progFill"></div>
+    </div>
+
+    <div class="timer-badge" id="timerBadge">
+      ⏱️
+      <span id="timerTxt">60:00</span>
+    </div>
+
+  </div>
+
+  <div id="app"></div>
+
+</main>
+
+<footer>
+
+  <div class="footer-brand">
+    Nokhpa <span>TEAM</span>
+  </div>
+
+  <div class="footer-tg">
+    ✦ Nursing Process
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+const QUESTIONS = [
+
+  {
+    t: "A nurse is reviewing infant mortality statistics in Egypt with nursing students. What proportion of all deaths occurring during the first year of life happens specifically within the four weeks of the neonatal period?",
+    o: ["One-quarter", "One-half", "About three-quarters", "Ninety percent"],
+    a: 2
+  },
+  {
+    t: "Which of the following accurately reflects the definitions of the neonatal period as stated in the text?",
+    o: [
+      "Birth through the first 28 days, birth through the first 29 days, or the first four weeks/first month of extra-uterine life",
+      "Exclusively from the 2nd day of birth until the 30th day of life",
+      "From the 4th month of gestation until the 28th day after birth",
+      "The first 24 hours of life up to 6 weeks post-delivery"
+    ],
+    a: 0
+  },
+  {
+    t: "During a newborn screening session prior to discharge, a nurse fastens a pulse oximeter to a baby’s arm and foot. What is the primary diagnostic purpose of this specific screening?",
+    o: [
+      "To evaluate the maturity of the cardiac regulatory center in the medulla",
+      "To detect if the child has a congenital heart defect",
+      "To assess the expansion of the lungs within the first 30 seconds of life",
+      "To determine if the infant requires 1 mg of Vitamin K"
+    ],
+    a: 1
+  },
+  {
+    t: "A full-term male newborn measures 50 cm in length and weighs 3.200 kg at birth. Three days later, the infant weighs 2.950 kg. Which combination of factors best explains this weight change?",
+    o: [
+      "Immaturity of the cardiac sphincter and rapid gastric emptying",
+      "Withdrawal of maternal hormones, withholding of water, and loss of feces and urine",
+      "High metabolic rate from brown fat oxidation and delayed meconium passage",
+      "Failure to gain the expected 200 gm/week during the first 72 hours"
+    ],
+    a: 1
+  },
+  {
+    t: "Compare the normal average crown-heel length of a term male newborn to that of a term female newborn, alongside the overall normal range for both sexes:",
+    o: [
+      "Male: 51 cm; Female: 50 cm; Range: 48-54 cm",
+      "Male: 50 cm; Female: 49 cm; Range: 47.5-53.5 cm",
+      "Male: 49 cm; Female: 50 cm; Range: 47.5-53.5 cm",
+      "Male: 50 cm; Female: 48.5 cm; Range: 45-52 cm"
+    ],
+    a: 1
+  },
+  {
+    t: "A nurse assesses a newborn's temperature immediately after delivery and notes it is slightly higher than the mother's, then drops in the delivery room. How long does it typically take for the newborn's temperature to rise back to the normal range (36.1C to 37.2C)?",
+    o: ["Within 30 seconds", "Within 3 hours", "Within about 8 hours", "Within 24 hours"],
+    a: 2
+  },
+  {
+    t: "Why are a normal newborn’s hands and feet colder than the rest of the body, and why is their heart rate normally irregular (120-150 B/M)?",
+    o: [
+      "Poor peripheral circulation and immature hypothalamus; immature cardiac regulatory center in the medulla",
+      "Patent ductus arteriosus; immature vagal nerve stimulation",
+      "High pulmonary artery pressure; non-shivering thermogenesis",
+      "Decreased aortic pressure; immature thoracic cage muscles"
+    ],
+    a: 0
+  },
+  {
+    t: "A full-term neonate has a resting blood pressure of 74/47 mmHg. During a heel-prick blood test, the infant begins crying vigorously. What blood pressure reading would the nurse expect during this episode?",
+    o: ["84/57 mmHg", "94/67 mmHg", "74/67 mmHg", "54/27 mmHg"],
+    a: 1
+  },
+  {
+    t: "When comparing the timeline of neonatal blood pressure fluctuations, when does the blood pressure reach its lowest level, and when does it return to approximately its initial birth level?",
+    o: [
+      "Lowest at 8 hours; returns to initial level at 24 hours",
+      "Lowest at 3 hours of age; returns to initial level by 4 to 6 days after birth",
+      "Lowest at 30 seconds; returns to initial level by 3 hours of age",
+      "Lowest at 24 hours; returns to initial level at 7 to 10 days"
+    ],
+    a: 1
+  },
+  {
+    t: "A nurse observes a neonate with a respiratory rate of 58 C/M. Which set of clinical manifestations must the nurse immediately observe for to confirm respiratory distress?",
+    o: [
+      "Working nasal, intercostals and subcostal retraction, and grunting",
+      "Cheyne-Stokes breathing, central cyanosis, and absence of gag reflex",
+      "Abdominal breathing, irregular rhythm, and occasional sneezing",
+      "Sub-conjunctive hemorrhages, eyelid edema, and nasal discharge"
+    ],
+    a: 0
+  },
+  {
+    t: "Compare Lanugo hair and Vernix caseosa regarding their gestational timelines of appearance and disappearance:",
+    o: [
+      "Lanugo appears at 32 weeks and disappears at 16 weeks; Vernix forms before 16 weeks and disappears at birth",
+      "Lanugo appears around 16 weeks of gestation and disappears after 32 weeks; Vernix is formed after 32 weeks of gestation and disappears in 2 to 3 days of life",
+      "Both appear at 16 weeks of gestation and disappear in 2 to 3 days of life",
+      "Lanugo is heavier in full-term infants; Vernix is heavier in preterm infants"
+    ],
+    a: 1
+  },
+  {
+    t: "A mother is concerned about tiny white pimples on her newborn's nose and chin, as well as bluish-black pigmented areas on the infant's buttocks. How should the nurse accurately differentiate these two findings?",
+    o: [
+      "The white pimples are Mongolian spots (disappear in 1-2 weeks); the pigmented areas are Milia (disappear by pre-school age)",
+      "The white pimples are Milia caused by obstruction of the sebaceous glands (disappear in a week or two); the pigmented areas are Mongolian spots (disappear during the pre-school age without treatment)",
+      "Both are forms of macular hemangioma that persist into adulthood",
+      "The white pimples are caused by sweat gland hyperactivity; the pigmented areas are desquamation"
+    ],
+    a: 1
+  },
+  {
+    t: "Which statement correctly compares Caput-succedaneum and Cephalo-haematoma?",
+    o: [
+      "Caput-succedaneum is blood under the periosteum that does not cross suture lines; Cephalo-haematoma is edema that disappears by the 3rd day",
+      "Caput-succedaneum is swelling or edema of the presenting part of skull disappearing by the 3rd day; Cephalo-haematoma is accumulation of blood between periosteum and bone of skull that does not cross a suture line and disappears after a few weeks",
+      "Both cross suture lines, increase on crying, and carry a high risk of intracranial hemorrhage",
+      "Caput-succedaneum causes severe jaundice from RBC breakdown; Cephalo-haematoma requires surgical drainage"
+    ],
+    a: 1
+  },
+  {
+    t: "A newborn develops a soft swelling over the skull that does not cross a suture line and does not increase on crying. Which of the following is a recognized complication of this specific condition?",
+    o: [
+      "Ophthalmia neonatorum",
+      "Increase jaundice due to increase break down of RBCs, infection, and intracranial hemorrhage",
+      "Obstruction of the sebaceous glands",
+      "Premature closure of the posterior fontanel"
+    ],
+    a: 1
+  },
+  {
+    t: "Compare the Anterior and Posterior fontanels in terms of location, shape/size, and complete closure time:",
+    o: [
+      "Anterior: between parietal and occipital bone, triangular, closes at 2-6 months; Posterior: between parietal and frontal bone, 4.5 cm at birth, closes at 12-18 months",
+      "Anterior: between the two parietal and frontal bone, about 3 fingers = 4.5 cm at birth, complete closure at 12-18 months; Posterior: between parietal and occipital bone, triangular shape, complete closure at 2-6 months after birth",
+      "Anterior: closes at 6 months (3 cm); Posterior: closes at 12 months (1.5 cm)",
+      "Both are triangular in shape and close completely by 6 months of age"
+    ],
+    a: 1
+  },
+  {
+    t: "At what rate does the anterior fontanel decrease in size from birth to 12 months of age?",
+    o: [
+      "At birth about 3 fingers = 4.5 cm; 6 months about 2 fingers = 3 cm; 12 months about 1 finger = 1.5 cm",
+      "At birth about 2 fingers = 3 cm; 6 months about 1 finger = 1.5 cm; 12 months completely closed",
+      "At birth about 4 fingers = 6 cm; 6 months about 3 fingers = 4.5 cm; 12 months about 2 fingers = 3 cm",
+      "At birth about 3 fingers = 4.5 cm; 6 months about 1 finger = 1.5 cm; 12 months about 0.5 cm"
+    ],
+    a: 0
+  },
+  {
+    t: "Compare normal head circumference measurements across developmental milestones according to the lecture:",
+    o: [
+      "At birth average size about 33-37 cm, at 1 year about 45 cm, and at 12 years about 55 cm",
+      "At birth average size about 30-33 cm, at 1 year about 40 cm, and at 12 years about 50 cm",
+      "At birth average size about 35-39 cm, at 1 year about 48 cm, and at 12 years about 58 cm",
+      "At birth average size about 33-37 cm, at 1 year about 50 cm, and at 12 years about 60 cm"
+    ],
+    a: 0
+  },
+  {
+    t: "A nurse measures a newborn's head circumference at 35 cm. What would be the expected normal chest circumference for this same newborn?",
+    o: [
+      "37 cm (about 2 cm more than head circumference)",
+      "33 cm (about 2 cm less than head circumference)",
+      "30 cm (about 5 cm less than head circumference)",
+      "35 cm (same as head circumference, while abdomen is 2 cm less)"
+    ],
+    a: 1
+  },
+  {
+    t: "A mother notices red areas on the sclera of her baby’s eyes after a vaginal delivery, and also notes that the baby cries without tears. What is the correct clinical explanation?",
+    o: [
+      "Sub-conjunctive hemorrhages due to impaired venous return during vaginal delivery (disappear in 2-3 weeks); tearless crying is normal for a variable period from several days to a few months depending on maturity of lacrimal ducts",
+      "Gonococcal ophthalmia neonatorum requiring immediate antibiotic drops; blocked tear ducts requiring surgery",
+      "Intracranial hemorrhage extending to the sclera; dehydration causing absence of lacrimal fluid",
+      "Permanent scleral bruising; complete absence of lacrimal fluid at birth"
+    ],
+    a: 0
+  },
+  {
+    t: "Why must a nurse remove an unusual amount of nasal discharge from a newborn's nose?",
+    o: [
+      "Since neonate can breathe only through the nose",
+      "Because nasal discharge triggers a fatal vagal bradycardia",
+      "Because the newborn lacks a sneeze reflex until 1 year of age",
+      "Because excess nasal mucus causes permanent false squint"
+    ],
+    a: 0
+  },
+  {
+    t: "Upon inspecting a newborn's umbilical cord when the cord is cut, the nurse notes only one umbilical artery and one umbilical vein. What is the immediate nursing implication?",
+    o: [
+      "This is a normal anatomical variation requiring no action",
+      "The baby should be assessed for the presence of congenital anomalies",
+      "The cord must be clamped twice as tightly to prevent bleeding",
+      "Alcohol swabbing should be avoided to prevent irritation"
+    ],
+    a: 1
+  },
+  {
+    t: "A mother reports that her newborn has swollen breasts with pale milk fluid (witch's milk) that can be expressed. What is the appropriate nursing intervention and explanation?",
+    o: [
+      "Express the fluid completely daily and apply warm compresses",
+      "Explain it is due to hormonal activity originating from the mother, disappears in 2 to 4 weeks without treatment, and the breast is tender and should be touched gently when necessary",
+      "Refer immediately for endocrinology evaluation for precocious puberty",
+      "Discontinue breastfeeding immediately to stop maternal hormone transfer"
+    ],
+    a: 1
+  },
+  {
+    t: "When is the newborn’s first breath usually taken, and when does full expansion of the collapsed lung occur?",
+    o: [
+      "First breath usually taken within 30 second after birth; full expansion does not occur for several days",
+      "First breath within 5 minutes after birth; full expansion occurs at 24 hours",
+      "First breath at 1 minute after birth; full expansion occurs within 8 hours",
+      "First breath immediately at cord clamping; full expansion occurs at 4 months"
+    ],
+    a: 0
+  },
+  {
+    t: "Which of the following accurately lists the five major areas of change in circulatory function as the newborn adapts to extra-uterine life?",
+    o: [
+      "Decreased aortic pressure, increased venous pressure, decreased systemic pressure, increased pulmonary artery pressure, and opening of foramen ovale",
+      "Increased aortic pressure and decreased venous pressure; increased systemic pressure and decreased pulmonary artery pressure; closure of foramen ovale, ductus arteriosus, and ductus venosus",
+      "Closure of foramen ovale at birth, closure of ductus arteriosus at 3 hours, and increased pulmonary resistance",
+      "Increased venous return to the placenta, decreased aortic pressure, and persistent ductus venosus"
+    ],
+    a: 1
+  },
+  {
+    t: "Compare the closure timelines of the Foramen Ovale and the Ductus Arteriosus during circulatory adjustment:",
+    o: [
+      "Closure of the foramen ovale by 3rd month; closure of the ductus arteriosus from several weeks to 4 month",
+      "Closure of the foramen ovale within 24 hours; closure of the ductus arteriosus by 3rd month",
+      "Closure of the foramen ovale at 4 months; closure of the ductus arteriosus at 3 days",
+      "Both close completely within 30 seconds of the first breath"
+    ],
+    a: 0
+  },
+  {
+    t: "Why are the first 24 hours after birth considered the most critical for the newborn’s adjustment to extra-uterine life?",
+    o: [
+      "Because physiological weight loss exceeds 15% during this window",
+      "Because during this time respiratory distress and circulatory failure can occur rapidly with little warning",
+      "Because brown fat stores are completely depleted after 24 hours",
+      "Because meconium always causes obstruction within the first 24 hours"
+    ],
+    a: 1
+  },
+  {
+    t: "How does a newborn accomplish heat production (thermogenesis), given that the shivering mechanism is rarely operable?",
+    o: [
+      "Through active sweating starting in the first week of life",
+      "Non-shivering mechanism accomplished primarily by brown-fat and secondarily by increased metabolic activity as in the brain, heart, liver",
+      "Through vigorous skeletal muscle contractions and crying",
+      "By constricting sweat glands until the 2nd week of life"
+    ],
+    a: 1
+  },
+  {
+    t: "In the immediate post-delivery period because of the amniotic fluid covering the body, what is the most important mechanism of heat loss, and how much does wrapping the baby reduce post-delivery heat loss?",
+    o: [
+      "Conduction; wrapping reduces heat loss by 30%",
+      "Evaporation; wrapping the baby reduced post-delivery heat loss by more than 60%",
+      "Radiation; wrapping reduces heat loss by 45%",
+      "Convection; wrapping reduces heat loss by 80%"
+    ],
+    a: 1
+  },
+  {
+    t: "According to the text, which thermal measure is more effective than the use of a radiant heater for a newborn?",
+    o: [
+      "Placing the baby near a warm window",
+      "Breast-feeding contact",
+      "Swaddling in three layers of wool blankets",
+      "Increasing the delivery room humidity to 90%"
+    ],
+    a: 1
+  },
+  {
+    t: "Compare the gestational maturity of the gastrointestinal tract with the newborn’s stomach capacity and emptying time:",
+    o: [
+      "Full maturity at 32 weeks; capacity 20-30 ml; empties in 1 hour",
+      "Full maturity achieved by 36 to 38 weeks of gestation; stomach capacity is 50 to 60 ml; empties intermittently starting within a few minutes of beginning a feeding and ending between two and four hours after feeding",
+      "Full maturity at 40 weeks; capacity 100 ml; empties in 6 hours",
+      "Full maturity at 34 weeks; capacity 15 ml; empties continuously"
+    ],
+    a: 1
+  },
+  {
+    t: "A nurse observes some regurgitation in a newborn during the neonatal period. What physiological factors account for this finding?",
+    o: [
+      "Overproduction of saliva before 3 months of age",
+      "The cardiac sphincter is immature as in nervous control of the stomach",
+      "Complete absence of intestinal propulsion at birth",
+      "Delayed passage of meconium beyond 12 hours"
+    ],
+    a: 1
+  },
+  {
+    t: "Within what timeframe does a normal term newborn pass meconium, and from what is meconium formed in utero?",
+    o: [
+      "Within 12 to 48 hours of birth; formed in utero from the amniotic fluid and its constituents together with intestinal secretions and shed mucosal cells",
+      "Within 1 to 6 hours of birth; formed from digested colostrum and bile salts",
+      "Within 48 to 72 hours of birth; formed from vernix caseosa and lanugo",
+      "Within 24 to 96 hours of birth; formed from maternal blood and mucus"
+    ],
+    a: 0
+  },
+  {
+    t: "Blood may occasionally be observed on the diaper of a female infant. What is this called and what causes it?",
+    o: [
+      "Uric acid crystals from severe kidney immaturity",
+      "Pseudo-menstruation related to the withdrawal of maternal hormones",
+      "Trauma caused by aggressive wiping of vernix caseosa between the labia",
+      "A sign of neonatal hemorrhagic disease requiring a second dose of Vitamin K"
+    ],
+    a: 1
+  },
+  {
+    t: "What is the total volume of urine per 24 hours, bladder volume by the end of the first week, daily voiding frequency, and specific gravity of a newborn’s urine?",
+    o: [
+      "Total volume per 24 hours is about 200-300 ml; by the end of the first week bladder volume is 15 ml; about 20 voiding per day; specific gravity about 1020",
+      "Total volume 500-600 ml/24 hr; bladder volume 50 ml; ~10 voidings/day; specific gravity ~1005",
+      "Total volume 100-150 ml/24 hr; bladder volume 30 ml; ~5 voidings/day; specific gravity ~1030",
+      "Total volume 300-400 ml/24 hr; bladder volume 25 ml; ~12 voidings/day; specific gravity ~1010"
+    ],
+    a: 0
+  },
+  {
+    t: "What is the most common cause of failure to void in neonates, and by what month of intrauterine life have the testes usually descended into the scrotum?",
+    o: [
+      "Renal agenesis; 6th month of intrauterine life",
+      "Dehydration; 8th month of intrauterine life",
+      "Bladder sphincter spasm; 9th month of intrauterine life",
+      "Maternal hormone withdrawal; 7th month of intrauterine life"
+    ],
+    a: 1
+  },
+  {
+    t: "Compare the newborn's skeletal system and back curvature with later development:",
+    o: [
+      "Newborn has more ossified bone than cartilage and pronounced lumbar/sacral curves",
+      "At birth the skeletal system contains larger amounts of cartilage than of ossified bone; the back is normally straight and flat when lying prone, while lumbar and sacral curves develop later when the infant sits up and begins to stand",
+      "Newborn has rigid joints to protect the CNS and develops thoracic curves at 2 months",
+      "Newborn has a completely unformed muscular system and fused sacral vertebrae"
+    ],
+    a: 1
+  },
+  {
+    t: "Which option accurately compares the presence and duration/fading of newborn reflexes according to the reflex table?",
+    o: [
+      "Startle (Moro) and Grasping fade at about 2 months; Tonic neck fades at about 2-3 months; Rooting fades at 6 months; Sucking (as a reflex movement) fades at 6-8 months",
+      "Moro fades at 6 months; Tonic neck is lifelong; Cough is present at birth; Sucking fades at 2 months",
+      "Eye blinking, Crying, Swallowing, Sneeze, and Cough are all present at birth and remain lifelong",
+      "Conditioned reflexes appear at birth, whereas Gag and Sneeze appear at 2 months"
+    ],
+    a: 0
+  },
+  {
+    t: "Which reflex has a listed presence starting at 1 year (lifelong) rather than at birth in the lecture's reflex table?",
+    o: ["Gag", "Cough", "Sneeze", "Eye blinking"],
+    a: 1
+  },
+  {
+    t: "As a result of turning a newborn’s head to one side, the arm and leg on the same side extend while the opposite limbs bend (postural fencing response). What is this reflex and when does it fade?",
+    o: [
+      "Startle (Moro); fades at 6 months",
+      "Tonic neck; at birth, fades at about 2-3 month of age",
+      "Grasping; fades at 2 months of age",
+      "Conditioned reflex; fades at 1 year of age"
+    ],
+    a: 1
+  },
+  {
+    t: "Compare the sensory system characteristics of the newborn as stated in the text:",
+    o: [
+      "Vision is the most developed sense; hearing develops after birth",
+      "Touch (strong through ears, tongue, cheek, lips, forehead) and hearing (highly developed since fetal life) are highly developed; taste is more developed than vision; smell allows smelling breast milk and searching for it",
+      "Smell is identical across all infants; touch is poorly developed until day 10",
+      "Vision has coordinated eye movements at birth; taste is absent until 3 months"
+    ],
+    a: 1
+  },
+  {
+    t: "How many hours per day does the newborn infant sleep, and when does the infant react violently to continuous irritation?",
+    o: [
+      "Sleeps about 12-14 hours/day; reacts violently at birth",
+      "Sleeps about 16-18 hours/day with little nap during day time (circadian sleep); reacts violently to continuous irritation at the end of ten days",
+      "Sleeps about 20-22 hours/day; reacts violently at 4 weeks",
+      "Sleeps about 16-18 hours/day; reacts violently at 24 hours"
+    ],
+    a: 1
+  },
+  {
+    t: "In what exact order are the basic needs of a normal newborn listed in Section V?",
+    o: [
+      "Warmth, clear airway, nutritional needs, protection from infection, love and security, respiratory exchange",
+      "Maintaining a clear airway, achieving and maintaining adequate respiratory exchange, warmth, protection from infection, love and security (attachment), nutritional needs",
+      "Clear airway, warmth, nutritional needs, respiratory exchange, attachment, infection protection",
+      "Respiratory exchange, clear airway, infection protection, warmth, nutrition, attachment"
+    ],
+    a: 1
+  },
+  {
+    t: "A nurse evaluates a newborn using the Apgar scoring system: Heart rate is more than 100/m, good strong cry and regular breathing, some flexion of extremities, grimace on foot stimulation, and body pink with extremities blue. What is the total Apgar score?",
+    o: ["6", "7", "8", "9"],
+    a: 1
+  },
+  {
+    t: "In the Apgar scoring table, which combination of findings scores 1 point in every single observed aspect (total = 5)?",
+    o: [
+      "Heart rate less than 100/m, weak cry and shallow breathing, some flexion of extremities, some motion/grimace, body pink with extremities blue",
+      "Heart rate absent, no breathing, flaccid, no response, blue/pale",
+      "Heart rate more than 100/m, weak cry, flaccid, cry, completely pink",
+      "Heart rate less than 100/m, good strong cry, well flexed, grimace, blue/pale"
+    ],
+    a: 0
+  },
+  {
+    t: "Why must the nurse avoid deep suction through the stomach during airway management?",
+    o: [
+      "To prevent rupture of the immature cardiac sphincter",
+      "To avoid vagal stimuli that leads to bradycardia",
+      "To prevent removal of protective gastric mucus",
+      "To avoid triggering premature swallowing reflexes"
+    ],
+    a: 1
+  },
+  {
+    t: "Which procedure accurately describes prophylactic eye drops and umbilical cord care in the delivery room according to the text?",
+    o: [
+      "Instill two drops of chloramphenicol into each upper conjunctival sac before wiping; swab cord with 95% alcohol",
+      "Wipe the neonate’s eyes clean first, then instill two drops of chloramphenicol in each of the lower conjunctival sac to prevent gonococcal or chlamydial eye infections (ophthalmia neonatorum); clamp/tie cord, observe any bleeding, and swab cord and base with 70% alcohol on a regular basis to promote healing",
+      "Instill one drop of silver nitrate without wiping eyes; apply antibiotic ointment to the cord base",
+      "Wipe eyes after instilling chloramphenicol; leave cord dry without any antiseptic"
+    ],
+    a: 1
+  },
+  {
+    t: "What dose of Vitamin K is injected shortly after birth in the delivery room, and what details are placed on the infant’s wrist or ankle identification band?",
+    o: [
+      "0.5 mg of Vitamin K; baby’s full name, father’s name, blood type, and weight",
+      "Single dose 1 mg of Vitamin K; mother’s full name, admission number, sex of infant, date and time of infant’s birth",
+      "2 mg of Vitamin K; mother’s full name, gestational age, Apgar score, and delivery room number",
+      "Single dose 1 mg of Vitamin K; infant’s first name, hospital name, sex, and birth length"
+    ],
+    a: 1
+  },
+  {
+    t: "How should the nursery scale be prepared and cleaned between weighing newborn infants?",
+    o: [
+      "Wipe the scale with 70% alcohol once per shift and place the baby directly on the metal tray",
+      "Cover the scale with a disposable liner or paper towel that is discarded after each infant is weighed, and wiped with a germicidal or fungicidal solution and freshly covered before the next infant is put on the scale",
+      "Cover the scale with a reusable cloth blanket changed every 12 hours",
+      "Weigh all infants wearing clothes to avoid touching the scale surface"
+    ],
+    a: 1
+  },
+  {
+    t: "What guidance does the text give regarding breastfeeding duration on each breast and giving water in very hot climates?",
+    o: [
+      "Start with 20 minutes per breast and give 30 ml of boiled water between feeds in hot weather",
+      "Nursing should be limited to 5 minutes on each breast and gradually increased until the infant nurses 10 to 15 minutes on the first breast to empty it and as the infant desires on the second; breastfed infants do not need other fluids, not even water in very hot climates",
+      "Nurse for 15 minutes on both breasts from day one and supplement with glucose water",
+      "Nurse on a strict 4-hour schedule and offer water if the baby cries"
+    ],
+    a: 1
+  },
+  {
+    t: "Before starting a breastfeeding session and after feeding, what steps should the mother follow?",
+    o: [
+      "Wash hands and breasts before each feeding, feed in a comfortable position; after feeding, burp the infant to help expel swallowed air and put on the right side",
+      "Apply alcohol to breasts before feeding, feed while standing, and place the infant prone immediately after feeding",
+      "Wash hands only, feed for 30 minutes, and place the infant on the left side without burping",
+      "Express witch's milk before feeding and lay the infant flat on the back afterward"
+    ],
+    a: 0
+  },
+  {
+    t: "How does newborn crying relate to bonding and the mother’s breasts according to Section XI?",
+    o: [
+      "Crying stimulates the newborn's sweat glands to release bonding pheromones",
+      "Crying is a newborn behavior that fosters the bonding process, and when crying starts it increases the blood flow to the mother’s breast indicating a biologic preparation for nursing",
+      "Crying lowers the newborn's blood pressure by 20 mmHg, inducing relaxation",
+      "Crying stimulates salivary gland maturation in the newborn"
+    ],
+    a: 1
+  },
+  {
+    t: "A mother is worried because her newborn has an inverted sleep rhythm (sleeping better during day hours than night), strains even during sleep, and passes 5-6 bowel motions per day often following each feed. How does the text classify these findings?",
+    o: [
+      "Pathological signs of sepsis and diarrhea requiring immediate hospitalization",
+      "Problems that are considered normal",
+      "Signs of congenital hypothyroidism and intestinal obstruction",
+      "Evidence of dehydration and inadequate breast milk intake"
+    ],
+    a: 1
+  },
+  {
+    t: "Compare normal neonatal bowel movement patterns with conditions that necessitate medical consultation:",
+    o: [
+      "1-2 motions/day is normal, whereas 5-6 motions/day or 1 motion every 3-4 days requires urgent medical consultation",
+      "Normal average is 1-2 motions/day; 5-6 motions/day after feeds and 1 motion every 3-4 days are normal (not diarrhea or constipation); medical consultation is needed for poor or absent sucking, yellow coloration of eyes and skin, significant repeated vomiting, rapid or difficult respiration or fever, and whitish spots or patches on the tongue or oral mucosa",
+      "Passing stool every 3-4 days is constipation requiring laxatives; yellow skin is normal up to 4 weeks",
+      "Occasional vomiting once or twice daily requires urgent medical consultation"
+    ],
+    a: 1
+  },
+  {
+    t: "A nurse notes whitish spots or patches on a newborn’s tongue or oral mucosa. According to the text, what does this finding require?",
+    o: [
+      "Reassurance that these are normal sucking pads that will disappear in 2 weeks",
+      "Wiping off with gauze dipped in 70% alcohol",
+      "Medical consultation",
+      "Reassurance that it is dried vernix caseosa from delivery"
+    ],
+    a: 2
+  },
+  {
+    t: "When does a normal newborn begin to gain weight, and what is the normal rate of weight gain?",
+    o: [
+      "Gains weight immediately from day 1 at 100 gm/week",
+      "Normally the newborn does not gain weight except after the first 7-10 days; the normal rate of weight gain is about 200 gm/week",
+      "Gains weight after 4 weeks at a normal rate of 500 gm/week",
+      "Gains weight after 3 days at a normal rate of 150 gm/week"
+    ],
+    a: 1
+  },
+  {
+    t: "Which of the following correctly pairs neonatal findings with their disappearance timeframes from the text?",
+    o: [
+      "Sub-conjunctive hemorrhages: 2-3 weeks; witch's milk: 2 to 4 weeks; milia: a week or two",
+      "Caput-succedaneum: 2-3 weeks; vernix caseosa: 2-4 weeks; Mongolian spots: 3rd day",
+      "Desquamation: 2-3 days; anterior fontanel: 2-6 months; cephalo-haematoma: 3rd day",
+      "Eyelid edema: 2-3 weeks; lanugo: 12-18 months; posterior fontanel: 3rd day"
+    ],
+    a: 0
+  },
+  {
+    t: "Why does the newborn not use the thoracic cage in breathing as older children do, using the diaphragm and abdominal muscles instead?",
+    o: [
+      "Because the thorax of the newborn is almost circular and ball-shaped",
+      "Because the newborn's lungs remain collapsed until the 3rd month of life",
+      "Because the intercostal muscles are paralyzed by maternal hormones",
+      "Because the newborn's ribs are completely ossified and rigid at birth"
+    ],
+    a: 0
+  },
+  {
+    t: "When are sweat glands usually active, and when do they have thermo-function?",
+    o: [
+      "Active at birth; full thermo-function by day 3",
+      "Usually active by the end of second week; little thermo-function until the fourth week or later of extra-uterine life",
+      "Active at 32 weeks gestation; full thermo-function at 8 hours of age",
+      "Active at 3 months; full thermo-function at 1 year"
+    ],
+    a: 1
+  },
+  {
+    t: "The salivary glands are immature at birth. Until about what age is little saliva manufactured?",
+    o: ["About 2 weeks old", "About 1 month old", "About 3 months old", "About 6 months old"],
+    a: 2
+  },
+  {
+    t: "What are the two broad goals of nursing care during the neonatal period?",
+    o: [
+      "Preventing physiological weight loss and ensuring immediate closure of fetal shunts",
+      "To promote the physical well-being of the newborn and to promote the establishment of a well-functioning family unit",
+      "Administering prophylactic antibiotics and restricting parental handling for the first 28 days",
+      "Achieving 200 gm/week weight gain in the first week and establishing a nocturnal sleep rhythm"
+    ],
+    a: 1
+  },
+  {
+    t: "In Egypt, about half of all deaths during the first year of life occur during the four weeks of the neonatal period.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Newborn blood screening is performed by taking a few drops of blood from a prick made in the baby’s heel to determine if the baby has one of a few rare but serious health conditions.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "During the first few days after birth, the neonate tends to lose about 5 to 10% of birth weight (physiological weight loss).",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The normal range of a neonate’s temperature is 36.5C to 37.5C.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "When the newborn is startled or cries, the pulse rate not only increases but also becomes more irregular.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The respiration of the newborn is irregular in depth, rate and rhythm and ranges from 35-50 C/M.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The skin of the newborn is red or dark pink; in the black infant a reddish black and in the Mongolian a-rose.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The premature infant has less lanugo hair than a full-term infant because lanugo appears after 32 weeks of gestation.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Vernix caseosa increases the neonate's immunity and is heavier in the folds of the skin and between the labia.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Desquamation (peeling) occurs during the first 2 to 4 weeks of life and occurs in post-mature neonates delivered after 40 weeks.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Capillary or macular haemangiomas (stork bites/salmon patch) around the eyes and at the nape of the neck are seen in 30-50%, and those at the nape may persist.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The newborn’s head size is 1/4 the body.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "There are six fontanels, and two of them are clinically important (anterior and posterior fontanel).",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Cephalo-haematoma is an accumulation of blood that crosses a suture line and increases on crying.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "The neck of a normal newborn is short, and it should be possible to turn the head freely from side to side.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Eye movements are not coordinated so both eyes momentarily may turn inward and outward (false squint), and the eye is blue or gray at birth, changing to permanent color in 3 to 6 months.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The eyelids may be edematous for about 2 days after birth until the kidneys eliminate the excess fluid.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The sucking pads are deposits of fatty tissue in the cheeks, and the tongue appears relatively large for the size of the oral cavity.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The umbilical cord normally contains two umbilical arteries and one umbilical vein.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Pre-respiratory movement begins in the 4th month of gestation, with amniotic fluid moving in and out of the lung while O2 is obtained through placental circulation.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "During circulatory adjustment to extra-uterine life, aortic pressure decreases and pulmonary artery pressure increases.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Heat loss from the external surface of the body to the environment occurs through convection, radiation, evaporation and conduction.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The newborn’s stomach empties continuously and finishes emptying within 30 minutes after feeding.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Meconium is recognized by its thick, tarry, dark green appearance.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "In female genitalia, the labia majora are large and completely cover the undeveloped labia minora.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "The testes have usually descended into the scrotum by the eight months of intrauterine life, and remaining in the abdomen or inguinal canal is undescended testes.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The newborn’s nervous system is mature at birth and responses to external stimuli are carried on chiefly by the cerebral cortex.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "If a newborn reflex is impaired or absent, possibly the CNS has injury.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "In the grasping reflex, the neonate grasps any object put in the hands firmly enough to hold body weight, then relaxes.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "In the gag reflex, stimulation of the uvula causes the esophagus to open and reverse peristalsis to occur.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Touch is poorly developed in the newborn, whereas vision is more developed than taste.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "In the Apgar scoring system, flaccid muscle tone scores 0 and no response to stimulation of feet scores 0.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Wiping the mouth with a finger covered with a piece of gauze, then using a rubber bulb syringe or electric suction, helps remove mucus obstructing the respiratory tract.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Simply drying a baby after delivery does not reduce heat loss, and use of a radiant heater is more effective than breast-feeding contact.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "The umbilical stump is an excellent medium for bacterial growth, and swabbing the cord and base with 70% alcohol on a regular basis is practiced to promote healing.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Prophylactic eye drops (two drops of chloramphenicol in each lower conjunctival sac) are instilled to prevent gonococcal or chlamydial eye infections (ophthalmia neonatorum).",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The mother must wash her hands and breast before each feeding, and after feeding she burps the infant and puts the baby on the left side.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Mild degree of nasal obstruction and snoring, occasional regurgitation or vomiting (once or twice daily), and straining during sleep are problems considered normal.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Passage of one bowel motion every 3-4 days is abnormal constipation that necessitates medical consultation.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Rapid or difficult respiration or fever, appearance of yellow coloration of eyes and skin, and poor or absent sucking necessitate medical consultation.",
+    o: ["True", "False"],
+    a: 0
+  }
+
+];
+/* =====================================================
+   ENGINE
+===================================================== */
+
+let questions=[];
+let current=0;
+let correct=0;
+let wrong=0;
+let answered=0;
+
+let answers=[];
+let wrongSet=[];
+
+let totalTime=60*60;
+let timeLeft=totalTime;
+let timerInterval=null;
+
+let studentName="";
+let studentCode="";
+
+// تثبيت نتيجة الامتحان الأصلي وفصل مراجعة الأخطاء
+let reviewMode = false;
+let originalResult = null;
+
+const LETTERS=["A","B","C","D","E","F"];
+
+
+/* SHUFFLE */
+
+function shuffle(array){
+
+  const arr=[...array];
+
+  for(let x=arr.length-1;x>0;x--){
+
+    const y=Math.floor(Math.random()*(x+1));
+
+    [arr[x],arr[y]]=[arr[y],arr[x]];
+
+  }
+
+  return arr;
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* INIT */
+
+function init(pool, isReview = false){
+
+  clearInterval(timerInterval);
+
+  // المراجعة منفصلة عن الامتحان الأصلي
+  if(!isReview){
+    reviewMode = false;
+    originalResult = null;
+  }else{
+    reviewMode = true;
+  }
+
+  questions=shuffle(pool);
+
+  current=0;
+  correct=0;
+  wrong=0;
+  answered=0;
+
+  answers=new Array(questions.length).fill(null);
+  wrongSet=[];
+
+  timeLeft=totalTime;
+
+  document.getElementById("totalBadge").textContent=
+    questions.length+" سؤال";
+
+  startTimer();
+
+  render();
+
+}
+
+/* TIMER */
+
+function startTimer(){
+
+  clearInterval(timerInterval);
+
+  updateTimer();
+
+  timerInterval=setInterval(()=>{
+
+    timeLeft--;
+
+    updateTimer();
+
+    if(timeLeft<=0){
+
+      clearInterval(timerInterval);
+
+      finish();
+
+    }
+
+  },1000);
+
+}
+
+
+function updateTimer(){
+
+  const min=Math.floor(timeLeft/60);
+
+  const sec=timeLeft%60;
+
+  const timer=document.getElementById("timerTxt");
+
+  const badge=document.getElementById("timerBadge");
+
+  timer.textContent=
+    `${min}:${sec<10?"0":""}${sec}`;
+
+  badge.className="timer-badge";
+
+  if(timeLeft<=120){
+
+    badge.classList.add("danger");
+
+  }else if(timeLeft<=300){
+
+    badge.classList.add("warn");
+
+  }
+
+}
+
+
+/* TOP */
+
+function updateTop(){
+
+  const total=questions.length;
+
+  document.getElementById("sCorrect").textContent=correct;
+
+  document.getElementById("sWrong").textContent=wrong;
+
+  const remaining=total-answered;
+
+  document.getElementById("sRemain").textContent=
+    Math.round((remaining/total)*100)+"%";
+
+  document.getElementById("progLabel").textContent=
+    "سؤال "+(current+1)+" / "+total;
+
+  const percent=((current+1)/total)*100;
+
+  document.getElementById("progFill").style.width=
+    percent+"%";
+
+  document.getElementById("prog-bar").style.width=
+    percent+"%";
+
+}
+
+
+/* RENDER */
+
+function render(){
+
+  updateTop();
+
+  const q=questions[current];
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="q-card">
+
+      <div class="q-header">
+
+        <div class="q-num">
+          سؤال ${current+1} / ${questions.length}
+        </div>
+
+      </div>
+
+
+      <div class="q-text">
+        ${escapeHTML(q.t)}
+      </div>
+
+
+      <div class="options">
+
+        ${q.o.map((option,index)=>`
+
+          <div
+            class="opt"
+            id="opt${index}"
+            onclick="choose(${index})"
+          >
+
+            <div class="opt-letter">
+              ${LETTERS[index] || index+1}
+            </div>
+
+            <div>
+              ${escapeHTML(option)}
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+
+      <div class="nav-btns">
+
+        <button
+          class="btn btn-skip"
+          type="button"
+          onclick="skip()"
+        >
+
+          <i class="fa-solid fa-forward"></i>
+
+          تخطي
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* CHOOSE */
+
+function choose(answer){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  const q=questions[current];
+
+  answers[current]=answer;
+
+  answered++;
+
+  const isCorrect=
+    answer===q.a;
+
+  if(isCorrect){
+
+    correct++;
+
+  }else{
+
+    wrong++;
+
+  }
+
+  updateTop();
+
+
+  q.o.forEach((_,index)=>{
+
+    const option=
+      document.getElementById("opt"+index);
+
+    option.classList.add("disabled");
+
+    if(index===q.a){
+
+      option.classList.add("correct");
+
+    }
+
+    if(index===answer && answer!==q.a){
+
+      option.classList.add("wrong");
+
+    }
+
+  });
+
+
+  const card=
+    document.querySelector(".q-card");
+
+  const feedback=
+    document.createElement("div");
+
+  feedback.className=
+    "feedback-bar "+(isCorrect?"ok":"no");
+
+  feedback.innerHTML=isCorrect
+    ? `<span class="feedback-icon">🎉</span>
+       <span>إجابة صحيحة ✔</span>`
+    : `<span class="feedback-icon">😔</span>
+       <span>إجابة خاطئة ✖</span>`;
+
+  card
+    .querySelector(".options")
+    .after(feedback);
+
+
+  const nav=
+    card.querySelector(".nav-btns");
+
+  nav.innerHTML=`
+
+    <button
+      class="btn btn-next"
+      type="button"
+      onclick="next()"
+    >
+
+      ${
+        current<questions.length-1
+        ? '<i class="fa-solid fa-arrow-left"></i> السؤال التالي'
+        : '<i class="fa-solid fa-flag-checkered"></i> إنهاء الامتحان'
+      }
+
+    </button>
+
+  `;
+
+}
+
+
+/* SKIP */
+
+function skip(){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  answers[current]=-1;
+
+  answered++;
+
+  next();
+
+}
+
+
+/* NEXT */
+
+function next(){
+
+  if(current<questions.length-1){
+
+    current++;
+
+    render();
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }else{
+
+    finish();
+
+  }
+
+}
+
+
+/* STUDENT FORM */
+
+function showStudentForm(){
+
+  clearInterval(timerInterval);
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="
+        font-size:45px;
+        margin-bottom:12px;
+      ">
+        📝
+      </div>
+
+
+      <div class="result-grade">
+        بيانات الطالب
+      </div>
+
+
+      <div class="result-sub"
+        style="margin-bottom:22px;"
+      >
+        من فضلك اكتب اسمك وكود الكشف قبل عرض النتيجة
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          الاسم
+        </label>
+
+        <input
+          id="studentNameInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب اسمك بالكامل"
+          autocomplete="name"
+        >
+
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          كود الكشف
+        </label>
+
+        <input
+          id="studentCodeInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب كود الكشف"
+        >
+
+      </div>
+
+
+      <div
+        id="studentError"
+        class="student-error"
+      >
+        من فضلك اكتب الاسم وكود الكشف
+      </div>
+
+
+      <button
+        class="btn btn-next"
+        type="button"
+        onclick="saveStudentInfo()"
+      >
+
+        ✅ تأكيد وعرض النتيجة
+
+      </button>
+
+    </div>
+
+  `;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* SAVE STUDENT */
+
+function saveStudentInfo(){
+
+  const name=
+    document
+      .getElementById("studentNameInput")
+      .value
+      .trim();
+
+  const code=
+    document
+      .getElementById("studentCodeInput")
+      .value
+      .trim();
+
+  const error=
+    document.getElementById("studentError");
+
+  if(!name || !code){
+
+    error.style.display="block";
+
+    return;
+
+  }
+
+  studentName=name;
+  studentCode=code;
+
+  finish(true);
+
+}
+
+
+/* FINISH */
+
+function finish(showResult=false){
+
+  // عند انتهاء مراجعة الأخطاء، اعرض نتيجة التدريب فقط
+  if(reviewMode && !showResult){
+    clearInterval(timerInterval);
+    showReviewResult();
+    return;
+  }
+
+  if(!showResult){
+    showStudentForm();
+    return;
+  }
+
+  // لا تسمح للمراجعة بتغيير الدرجة الأصلية
+  if(reviewMode){
+    showReviewResult();
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+
+  const score=
+    Math.round((correct/total)*100);
+
+
+  wrongSet=questions
+    .map((q,index)=>{
+
+      if(answers[index]!==q.a){
+
+        return {
+          ...q,
+          myAns:answers[index]
+        };
+
+      }
+
+      return null;
+
+    })
+    .filter(Boolean);
+
+
+  let grade;
+  let gradeColor;
+
+
+  if(score>=90){
+
+    grade="🥇 ممتاز";
+    gradeColor="var(--success)";
+
+  }else if(score>=75){
+
+    grade="🥈 جيد جداً";
+    gradeColor="var(--gold-light)";
+
+  }else if(score>=60){
+
+    grade="🥉 جيد";
+    gradeColor="var(--gold)";
+
+  }else{
+
+    grade="📚 راجع تاني";
+    gradeColor="var(--danger)";
+
+  }
+
+
+  const circumference=
+    2*Math.PI*45;
+
+  const offset=
+    circumference-(score/100)*circumference;
+
+
+  const reportHTML=
+    questions.map((q,index)=>{
+
+      const isCorrect=
+        answers[index]===q.a;
+
+      const yourAnswer=
+        answers[index]>=0
+        ? escapeHTML(q.o[answers[index]])
+        : "تم التخطي";
+
+
+      return `
+
+        <div class="report-item ${isCorrect?"ok":"no"}">
+
+          <div class="ri-q">
+
+            ${isCorrect?"✅":"❌"}
+
+            ${escapeHTML(q.t)}
+
+          </div>
+
+
+          ${
+            !isCorrect
+            ? `
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-yours">
+                  إجابتك
+                </span>
+
+                <span>
+                  ${yourAnswer}
+                </span>
+
+              </div>
+
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-right">
+                  الصحيح
+                </span>
+
+                <span>
+                  ${escapeHTML(q.o[q.a])}
+                </span>
+
+              </div>
+
+            `
+            :""
+          }
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("prog-bar").style.width="100%";
+
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+
+      <div style="
+        background:var(--bg2);
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:14px;
+        margin-bottom:20px;
+        text-align:right;
+      ">
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          اسم الطالب
+        </div>
+
+        <div style="
+          font-size:17px;
+          font-weight:900;
+          color:var(--text);
+          margin-bottom:12px;
+        ">
+          ${escapeHTML(studentName)}
+        </div>
+
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          كود الكشف
+        </div>
+
+        <div style="
+          font-size:16px;
+          font-weight:900;
+          color:var(--gold);
+        ">
+          ${escapeHTML(studentCode)}
+        </div>
+
+      </div>
+
+
+      <div class="score-ring">
+
+        <svg viewBox="0 0 110 110">
+
+          <circle
+            class="ring-bg"
+            cx="55"
+            cy="55"
+            r="45"
+          />
+
+          <circle
+            class="ring-fill"
+            cx="55"
+            cy="55"
+            r="45"
+            stroke="${gradeColor}"
+            stroke-dasharray="${circumference}"
+            stroke-dashoffset="${circumference}"
+            id="ringFill"
+          />
+
+        </svg>
+
+
+        <div class="score-num">
+          ${score}
+        </div>
+
+        <div class="score-pct">
+          %
+        </div>
+
+      </div>
+
+
+      <div
+        class="result-grade"
+        style="color:${gradeColor}"
+      >
+        ${grade}
+      </div>
+
+
+      <div class="result-sub">
+
+        أجبت على ${answered} من ${total} سؤال
+
+      </div>
+
+
+      <div class="result-stats">
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--success)"
+          >
+            ${correct}
+          </div>
+
+          <div class="l">
+            صحيح
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--danger)"
+          >
+            ${wrong}
+          </div>
+
+          <div class="l">
+            خطأ
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--gold)"
+          >
+            ${total-answered}
+          </div>
+
+          <div class="l">
+            تخطي
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="result-actions">
+
+
+      ${
+        wrongSet.length
+        ? `
+
+          <button
+            class="btn btn-retry"
+            type="button"
+            onclick="retryWrong()"
+          >
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            إعادة الخطأ (${wrongSet.length})
+
+          </button>
+
+        `
+        :""
+      }
+
+
+      <button
+        class="btn btn-home"
+        type="button"
+        onclick="init(QUESTIONS)"
+      >
+
+        <i class="fa-solid fa-shuffle"></i>
+
+        امتحان جديد عشوائي
+
+      </button>
+
+
+      <a
+        href="../index.html"
+        class="btn btn-home"
+        style="text-decoration:none;"
+      >
+
+        <i class="fa-solid fa-house"></i>
+
+        رجوع للمادة
+
+      </a>
+
+
+    </div>
+
+
+    <div>
+
+      <div class="report-title">
+        📋 تقرير مفصّل
+      </div>
+
+      ${reportHTML}
+
+    </div>
+
+  `;
+
+  // حفظ نسخة ثابتة من النتيجة الرسمية قبل بدء أي مراجعة
+  originalResult = {
+    questions: questions.slice(),
+    answers: answers.slice(),
+    wrongSet: wrongSet.map(q=>({...q})),
+    correct: correct,
+    wrong: wrong,
+    answered: answered,
+    score: score,
+    resultHTML: document.getElementById("app").innerHTML,
+    studentName: studentName,
+    studentCode: studentCode
+  };
+
+  setTimeout(()=>{
+
+    const ring=
+      document.getElementById("ringFill");
+
+    if(ring){
+
+      ring.style.strokeDashoffset=
+        offset;
+
+    }
+
+  },100);
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* RETRY WRONG - مراجعة منفصلة */
+
+function retryWrong(){
+
+  if(!originalResult || !originalResult.wrongSet.length){
+    return;
+  }
+
+  const pool=originalResult.wrongSet.map(q=>({
+    t:q.t,
+    o:q.o,
+    a:q.a
+  }));
+
+  // بدء المراجعة دون تغيير الدرجة الأصلية
+  init(pool, true);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* REVIEW RESULT - نتيجة التدريب فقط */
+
+function showReviewResult(){
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+  const reviewCorrect=correct;
+  const reviewWrong=wrong;
+  const reviewSkipped=total-answered;
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="font-size:45px;margin-bottom:12px;">📚</div>
+
+      <div class="result-grade">انتهت مراجعة الأخطاء</div>
+
+      <div class="result-sub" style="margin-bottom:20px;">
+        دي نتيجة التدريب فقط، ودرجتك الأصلية لم تتغير.
+      </div>
+
+      <div class="result-stats">
+
+        <div class="rs">
+          <div class="n" style="color:var(--success)">${reviewCorrect}</div>
+          <div class="l">إجابة صحيحة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--danger)">${reviewWrong}</div>
+          <div class="l">إجابة خاطئة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--gold)">${reviewSkipped}</div>
+          <div class="l">لم تتم الإجابة</div>
+        </div>
+
+      </div>
+
+      <div style="
+        margin-top:22px;
+        padding:15px;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background:var(--bg2);
+      ">
+        <div style="color:var(--text2);font-size:13px;margin-bottom:6px;">
+          درجتك الرسمية في الامتحان الأصلي
+        </div>
+        <div style="font-size:32px;font-weight:900;color:var(--gold);">
+          ${originalResult ? originalResult.score : 0}%
+        </div>
+        <div style="color:var(--success);font-size:12px;margin-top:5px;">
+          🔒 الدرجة الأصلية ثابتة
+        </div>
+      </div>
+
+      <div class="result-actions">
+
+        <button class="btn btn-retry" type="button" onclick="showOriginalResult()">
+          <i class="fa-solid fa-arrow-right"></i>
+          العودة إلى النتيجة الأصلية
+        </button>
+
+        <button class="btn btn-home" type="button" onclick="init(QUESTIONS)">
+          <i class="fa-solid fa-shuffle"></i>
+          امتحان جديد
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById("prog-bar").style.width="100%";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* RESTORE ORIGINAL RESULT */
+
+function showOriginalResult(){
+
+  if(!originalResult){
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  questions=originalResult.questions.slice();
+  answers=originalResult.answers.slice();
+  wrongSet=originalResult.wrongSet.map(q=>({...q}));
+
+  correct=originalResult.correct;
+  wrong=originalResult.wrong;
+  answered=originalResult.answered;
+
+  studentName=originalResult.studentName;
+  studentCode=originalResult.studentCode;
+
+  current=Math.max(0, questions.length-1);
+  reviewMode=false;
+
+  document.getElementById("app").innerHTML=originalResult.resultHTML;
+
+  updateTop();
+  document.getElementById("prog-bar").style.width="100%";
+
+  const ring=document.getElementById("ringFill");
+
+  if(ring){
+    const circumference=2*Math.PI*45;
+    const offset=circumference-(originalResult.score/100)*circumference;
+
+    ring.style.strokeDashoffset=circumference;
+
+    setTimeout(()=>{
+      const currentRing=document.getElementById("ringFill");
+      if(currentRing){
+        currentRing.style.strokeDashoffset=offset;
+      }
+    },100);
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+/* THEME */
+
+const themeBtn=
+  document.getElementById("themeBtn");
+
+let theme=
+  localStorage.getItem("theme") || "dark";
+
+
+function applyTheme(value){
+
+  theme=value;
+
+  document.documentElement.setAttribute(
+    "data-theme",
+    value==="dark" ? "dark" : ""
+  );
+
+  if(themeBtn){
+
+    themeBtn.textContent=
+      value==="dark" ? "☀️" : "🌙";
+
+  }
+
+  localStorage.setItem(
+    "theme",
+    value
+  );
+
+}
+
+
+applyTheme(theme);
+
+
+if(themeBtn){
+
+  themeBtn.addEventListener(
+    "click",
+    ()=>{
+
+      applyTheme(
+        theme==="dark"
+        ? "light"
+        : "dark"
+      );
+
+    }
+  );
+
+}
+
+
+/* START */
+
+init(QUESTIONS);
+
+</script>
+<div style="
+  max-width:650px;
+  margin:35px auto;
+  padding:0 20px;
+  text-align:center;
+  direction:rtl;
+">
+
+  <div style="
+    color:#d4af37;
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:18px;
+  ">
+    ✦ تواصل معنا ✦
+  </div>
+
+  <div style="
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  ">
+
+    <a href="https://wa.me/201010306545"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 تواصل معنا على واتساب
+    </a>
+
+    <a href="https://chat.whatsapp.com/JR7eCQQn9HLGoCYUfA1NNF?mode=gi_t"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 انضم إلى جروب الواتساب
+    </a>
+
+  </div>
+</div>
+</body>
+</html>
